@@ -31,12 +31,12 @@ public class FilmDaoImpl implements FilmDao {
 //删除指定的用户信息
 	public void deleted(Connection conn, FilmEntity film) throws SQLException {
 		PreparedStatement ps = (PreparedStatement) conn.prepareCall("DELETE FROM film WHERE film_id=?");
-		ps.setLong(1, film.getId());
-		ps.executeUpdate();
+		ps.setLong(1, film.getFilm_id());
+		ps.execute();
 
 	}
 	public ResultSet get(Connection conn, FilmEntity film) throws SQLException {
-		PreparedStatement ps= conn.prepareStatement("select * from film left join language on film.language_id=language.language_id");
+		PreparedStatement ps= conn.prepareStatement("select * from film left join language on film.language_id=language.language_id",ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
 		return ps.executeQuery();
 	}
 

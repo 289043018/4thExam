@@ -1,6 +1,13 @@
 package com.hand.entity;
 
 public class FilmEntity extends IdEntity {
+	private long film_id;
+	public long getFilm_id() {
+		return film_id;
+	}
+	public void setFilm_id(long film_id) {
+		this.film_id = film_id;
+	}
 	private String title;
 	private String description;
 	private long language_id;
@@ -24,8 +31,10 @@ public class FilmEntity extends IdEntity {
 	}
 	@Override
 	public String toString() {
-		return "FilmEntity [title=" + title + ", description=" + description + "]";
+		return "FilmEntity [film_id=" + film_id + ", title=" + title + ", description=" + description + ", language_id="
+				+ language_id + "]";
 	}
+
 	
 	
 	

@@ -7,6 +7,6 @@
 <title>删除电影记录</title>
 </head>
 <body>
-
+删除成功。
 </body>
 </html>

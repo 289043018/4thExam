@@ -15,11 +15,16 @@
 
 </head>
 <body>
+ <table border="1" spacing="2">  
 
-
+		<%!
+		Connection conn =null;
+		
+		public static final	int pagesize=50;
+		int pagecount;
+		int curpage=1;
+		%>
 		<%
-		Connection conn =null;  %>
-		<% 
 		try {
 			conn = ConnectionFactory.getInstance().makeConnection();  
 			conn.setAutoCommit(false);
@@ -29,35 +34,59 @@
 			ResultSet  data =null;
 			data = filmDao.get(conn, film);
 			conn.commit();
-		%>
-		<% 	while(data.next()){	%>
-			电影编号：<a><%=data.getLong("film_id")%></a><br/>
-			标题：<a><%=data.getString("title")%></a><br/>
-			简介：<a><%=data.getString("description")%></a><br/>
-			语言：<a><%=data.getString("name")%></a><br/>
-			<form action="<%= request.getContextPath()%>/DeleteServlet" Method="post">
+
+		data.last();
+		int size = data.getRow();
+		pagecount = (size%pagesize==0)?(size/pagesize):(size/pagesize+1);
+		String tmp = request.getParameter("curpage");  
+		if(tmp==null){
+			tmp="1";
+		}
+		curpage = Integer.parseInt(tmp);
+		if(curpage>=pagecount) curpage = pagecount;  
+		boolean flag = data.absolute((curpage-1)*pagesize+1);  
+		out.println(curpage); 
+		int count = 0; 
+		
+		do{
+			 if(count>=pagesize)break;
+			long film_id=data.getLong("film_id");
+			String title=data.getString("title");
+			String description=data.getString("description");
+			String name=data.getString("name");
+			 count++;
+			 
+			 %>
+			<tr>
+			<td>电影编号：<%=film_id%></td>
+			<td>标题：<%=title%></td>
+			<td>简介：<%=description%></td>
+			<td>语言：<%=name%></td>
+			<td><form action="<%= request.getContextPath()%>/DeleteServlet" Method="post">
 			<input type="hidden" name="film_id" value="<%=data.getString("film_id")%>"/>
-			<input type="submit" name="delete" value="删除该记录"/><tb/>
+			<input type="submit" name="delete" value="删除"/>
 			</form>
 			<form action="<%= request.getContextPath()%>/UpdataServlet" Method="post">
 			<input type="hidden" name="film_id" value="<%=data.getString("film_id")%>"/>
 			<input id="<%=data.getInt("film_id") %>" type="button" name="updata" value="修改" />
-			</form>
-			<br/><br/><br/><br/>
-			==============================================<br/>
-		<%} %>	
-		<% 
+			</form></td>
+			
+			 
+		 <%		 }while(data.next());%>
+		<% conn.close();%>
+		 <%
 		} catch (Exception e) {
 			 e.printStackTrace();
-			try {
-				conn.rollback();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+			
 		}
 		
 		%>
-	
+		</table>
+<a href = "checkfilm.jsp?curpage=1" >首页</a>  
+<a href = "checkfilm.jsp?curpage=<%=curpage-1%>" >上一页</a>  
+<a href = "checkfilm.jsp?curpage=<%=curpage+1%>" >下一页</a>  
+<a href = "checkfilm.jsp?curpage=<%=pagecount%>" >尾页</a>  
+第<%=curpage%>页/共<%=pagecount%>页  
 
 </body>
 </html>
