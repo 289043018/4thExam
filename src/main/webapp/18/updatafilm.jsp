@@ -18,6 +18,7 @@
 </script>
 </head>
 <body>
+<form action="<%= request.getContextPath()%>/UpdataServlet" Method="post">
 <table border="1" cellspacing="0" cellpadding="5" bordercolor="silver" align="center">
 		
 		
@@ -27,23 +28,40 @@
 			<td colspan="4" align="center" bgcolor="#E8E8E8">添加电影记录</td>
 		</tr>
 		<tr>
+			<td>编号：</td>
 			<td>标题：</td>
 			<td>简介：</td>
 			<td>语言：</td>
 		</tr>
+		
 		<tr>
-		<input type="text" name="title" />
-		<input type="text" name="description" />
-		<input type="text" name="language" />
+			<td><%=request.getAttribute("film_id") %></td>
+			<td><%=request.getAttribute("title") %></td>
+			<td><%=request.getAttribute("description") %></td>
+			<td><%=request.getAttribute("language") %></td>
+		</tr>
+		
+		<tr>
+		<td><input type="hidden" value="<%=request.getAttribute("film_id") %>" name="film_id"></td>
+		<td><input style="height:200px;width:200px" type="text" name="title" /></td>
+		<td><input style="height:200px;width:200px" type="text" name="description" /></td>
+		
+		<td><p><input type="radio" value="1" name="language">English</p><br/>
+		<input type="radio" value="2" name="language">Italian</p><br/>
+		<p><input type="radio" value="3" name="language">Japanese</p><br/>
+		<p><input type="radio" value="4" name="language">Mandarin</p><br/>
+		<p><input type="radio" value="5" name="language">French</p><br/>
+		<p><input type="radio" value="6" name="language">German</p></td><br/>
 		
 		</tr>
 		<tr>
 			<td colspan="4" align="center">
-				<input type="submit" name="submit" onclick="return check(this);"/>
+				<input type="submit" name="submit" value="修改"/>
 				<input type="reset" name="reset" /></td>
 		</tr>	
 
 	
 	</table>
+	</form>
 </body>
 </html>

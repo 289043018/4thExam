@@ -30,6 +30,15 @@
   	<servlet-name>interServlet</servlet-name>
   	<servlet-class>com.hand.servlet.interServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<display-name>UpdataServlet</display-name>
+  	<servlet-name>UpdataServlet</servlet-name>
+  	<servlet-class>com.hand.servlet.UpdataServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdataServlet01</servlet-name>
+  	<servlet-class>com.hand.servlet.UpdataServlet01</servlet-class>
+  </servlet>
     <servlet-mapping>
   	<servlet-name>DeleteServlet</servlet-name>
   	<url-pattern>/DeleteServlet</url-pattern>
@@ -41,6 +50,14 @@
   <servlet-mapping>
   	<servlet-name>interServlet</servlet-name>
   	<url-pattern>/interServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdataServlet</servlet-name>
+  	<url-pattern>/UpdataServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdataServlet01</servlet-name>
+  	<url-pattern>/UpdataServlet01</url-pattern>
   </servlet-mapping>
 
 

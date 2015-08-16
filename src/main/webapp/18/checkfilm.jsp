@@ -66,9 +66,12 @@
 			<input type="hidden" name="film_id" value="<%=data.getString("film_id")%>"/>
 			<input type="submit" name="delete" value="删除"/>
 			</form>
-			<form action="<%= request.getContextPath()%>/UpdataServlet" Method="post">
-			<input type="hidden" name="film_id" value="<%=data.getString("film_id")%>"/>
-			<input id="<%=data.getInt("film_id") %>" type="button" name="updata" value="修改" />
+			<form action="<%= request.getContextPath()%>/UpdataServlet01" Method="post">
+			<input type="hidden" name="film_id" value="<%=data.getLong("film_id")%>"/>
+			<input type="hidden" name="title" value="<%=data.getString("title")%>"/>
+			<input type="hidden" name="description" value="<%=data.getString("description")%>"/>
+			<input type="hidden" name="name" value="<%=data.getString("name")%>"/>
+			<input id="<%=data.getInt("film_id") %>" type="submit" name="updata" value="修改" />
 			</form></td>
 			
 			 

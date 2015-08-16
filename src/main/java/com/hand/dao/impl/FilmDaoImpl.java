@@ -20,11 +20,12 @@ public class FilmDaoImpl implements FilmDao {
 	}
 //根据用户指定的ID更新用户信息
 	public void update(Connection conn, long id, FilmEntity film) throws SQLException {
-		String updatesql= "UPDATE film set title=?,description=? WHERE film_id =?";
+		String updatesql= "UPDATE film set title=?,description=?,language_id=? WHERE film_id =?";
 		PreparedStatement ps = (PreparedStatement) conn.prepareStatement(updatesql);
 		
 		ps.setString(1, film.getTitle());
 		ps.setString(2,film.getDescription());
+		ps.setLong(3, film.getLanguage_id());
 		ps.setLong(4, id);
 		ps.executeUpdate();
 	}
