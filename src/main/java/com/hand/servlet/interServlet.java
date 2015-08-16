@@ -55,7 +55,7 @@ public class interServlet extends HttpServlet {
 			film.setLanguage_id(language_id);
 			filmDao.save(conn, film);
 			conn.commit();
-			rd = request.getRequestDispatcher("/18/checkfilm.jsp");
+			rd = request.getRequestDispatcher("/18/inster_success.jsp");
 			rd.forward(request, response);
 	
 		} catch (Exception e) {

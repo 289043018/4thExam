@@ -11,7 +11,7 @@ import com.hand.entity.FilmEntity;
 public class FilmDaoImpl implements FilmDao {
 //保存用户信息
 	public void save(Connection conn, FilmEntity film) throws SQLException {
-		PreparedStatement ps = (PreparedStatement) conn.prepareCall("INSERT INTO film(title,decsription,language_id)values(?,?,?)");
+		PreparedStatement ps = (PreparedStatement) conn.prepareCall("INSERT INTO film(title,description,language_id)values(?,?,?)");
 		ps.setString(1, film.getTitle());
 		ps.setString(2,film.getDescription());
 		ps.setLong(3, film.getLanguage_id());
